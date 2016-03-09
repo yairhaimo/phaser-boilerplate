@@ -75,7 +75,7 @@ export default class Play extends Phaser.State {
     if (this.life <= 0) {
       this.game.state.start('lose');
     }
-    else if (this.score >= NUMBER_OF_STARS / 2) {
+    else if (this.score >= NUMBER_OF_STARS * 0.7) {
       this.game.state.start('win');
     }
   }
