@@ -1,13 +1,14 @@
 import 'phaser-shim';
-import Game from './game';
+import { Game } from './game';
 import * as States from './states';
+import { STATES } from './definitions';
 const game = new Game();
 
-game.state.add('boot', States.Boot);
-game.state.add('load', States.Load);
-game.state.add('menu', States.Menu);
-game.state.add('play', States.Play);
-game.state.add('win', States.Win);
-game.state.add('lose', States.Lose);
+game.state.add(STATES.BOOT, States.Boot);
+game.state.add(STATES.LOAD, States.Load);
+game.state.add(STATES.MENU, States.Menu);
+game.state.add(STATES.PLAY, States.Play);
+game.state.add(STATES.WIN, States.Win);
+game.state.add(STATES.LOSE, States.Lose);
 
-game.state.start('boot');
+game.state.start(STATES.BOOT);

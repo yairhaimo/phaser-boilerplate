@@ -1,10 +1,12 @@
 import 'phaser-shim';
-import Player from '../objects/player';
+import { STATES } from '../definitions';
+import { Player } from '../objects/player';
+
 const NUMBER_OF_STARS = 10;
 const NUMBER_OF_JIRAS = 5;
 const NUMBER_OF_LIVES = 3;
 
-export default class Play extends Phaser.State {
+export class Play extends Phaser.State {
   init(settings) {
     this.life = NUMBER_OF_LIVES;
     this.score = 0;
@@ -42,8 +44,14 @@ export default class Play extends Phaser.State {
   }
 
   addHUD() {
-    this.lifeLabel = this.game.add.text(10, 10, 'Life:' + this.life, { font: '15px Arial', fill: '#ffffff'});
-    this.scoreLabel = this.game.add.text(10, 38, 'Score:' + this.score, { font: '15px Arial', fill: '#ffffff'});
+    this.lifeLabel = this.game.add.text(10, 10, 'Life:' + this.life, {
+      font: '15px Arial',
+      fill: '#ffffff'
+    });
+    this.scoreLabel = this.game.add.text(10, 38, 'Score:' + this.score, {
+      font: '15px Arial',
+      fill: '#ffffff'
+    });
   }
 
   addPlatforms() {
@@ -68,15 +76,14 @@ export default class Play extends Phaser.State {
     this.addStars();
     this.addJiras();
     this.platforms = this.addPlatforms();
-    this.player = new Player({game: this.game, colliders: this.platforms});
+    this.player = new Player({ game: this.game, colliders: this.platforms });
   }
 
   checkWinLoseConditions() {
     if (this.life <= 0) {
-      this.game.state.start('lose');
-    }
-    else if (this.score >= NUMBER_OF_STARS * 0.7) {
-      this.game.state.start('win');
+      this.game.state.start(STATES.LOSE);
+    } else if (this.score >= NUMBER_OF_STARS * 0.7) {
+      this.game.state.start(STATES.WIN);
     }
   }
 
@@ -84,9 +91,9 @@ export default class Play extends Phaser.State {
     star.kill();
     this.score++;
     this.scoreLabel.setText('Score:' + this.score);
-    this.scoreLabel.setStyle({fill: '#00aaff'});
+    this.scoreLabel.setStyle({ fill: '#00aaff' });
     setTimeout(() => {
-      this.scoreLabel.setStyle({fill: '#ffffff'});
+      this.scoreLabel.setStyle({ fill: '#ffffff' });
     }, 800);
   }
 
@@ -94,9 +101,9 @@ export default class Play extends Phaser.State {
     jira.kill();
     this.life--;
     this.lifeLabel.setText('Life:' + this.life);
-    this.lifeLabel.setStyle({fill: '#ff0000'});
+    this.lifeLabel.setStyle({ fill: '#ff0000' });
     setTimeout(() => {
-      this.lifeLabel.setStyle({fill: '#ffffff'});
+      this.lifeLabel.setStyle({ fill: '#ffffff' });
     }, 800);
   }
 

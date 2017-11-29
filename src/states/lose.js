@@ -1,18 +1,15 @@
 import 'phaser-shim';
 
-export default class Lose extends Phaser.State {
-  init(settings) {
-
-  }
+export class Lose extends Phaser.State {
+  init(settings) {}
 
   preload() {
     console.log('lose preload');
   }
 
   create() {
-    this.game.add.text(80, 80, 'You lose :(', { font: '50px Arial', fill: '#ffffff'});
+    this.game.add.text(80, 80, 'You lose :(', { font: '50px Arial', fill: '#ffffff' });
   }
 
-  update() {
-  }
+  update() {}
 }

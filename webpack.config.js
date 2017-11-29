@@ -1,22 +1,31 @@
-var path = require("path");
+const path = require('path');
 module.exports = {
   entry: {
-    app: ["./src/app.js"]
+    app: ['./src/app.js']
   },
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
   },
   externals: {
-    phaser: "Phaser"
+    phaser: 'Phaser'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /(pixi|phaser).js/, loader: 'script'
+        test: /(pixi|phaser).js/,
+        use: 'script-loader'
       },
       {
-        test: /\.js/, loader: 'babel', exclude: /node_modules/
+        test: /\.js/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
       }
     ]
   },

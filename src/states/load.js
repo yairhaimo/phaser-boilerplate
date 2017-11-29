@@ -1,23 +1,21 @@
 import 'phaser-shim';
+import { STATES, IMAGES } from '../definitions';
 
-export default class Load extends Phaser.State {
-  init(settings) {
-
-  }
+export class Load extends Phaser.State {
+  init(settings) {}
 
   preload() {
     console.log('load preload');
-    this.game.loadImage('cloud');
-    this.game.loadImage('ground');
-    this.game.loadImage('star');
-    this.game.loadImage('jira');
-    this.game.loadSpritesheet('player-t');
+    this.game.loadImage(IMAGES.CLOUD);
+    this.game.loadImage(IMAGES.GROUND);
+    this.game.loadImage(IMAGES.STAR);
+    this.game.loadImage(IMAGES.JIRA);
+    this.game.loadSpritesheet(IMAGES.PLAYER_T);
   }
 
   create() {
-    this.game.state.start('menu');
+    this.game.state.start(STATES.MENU);
   }
 
-  update() {
-  }
+  update() {}
 }

@@ -1,9 +1,8 @@
 import 'phaser-shim';
+import { STATES } from '../definitions';
 
-export default class Boot extends Phaser.State {
-  init(settings) {
-
-  }
+export class Boot extends Phaser.State {
+  init(settings) {}
 
   preload() {
     console.log('boot preload');
@@ -11,9 +10,8 @@ export default class Boot extends Phaser.State {
 
   create() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.state.start('load');
+    this.game.state.start(STATES.LOAD);
   }
 
-  update() {
-  }
+  update() {}
 }
